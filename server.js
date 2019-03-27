@@ -19,6 +19,9 @@ const db = require("./config/keys").mongoURI;
 // Passport middleware
 app.use(passport.initialize());
 
+// Passport Config
+require("./config/passport")(passport);
+
 // Connect to Mongo
 mongoose
   .connect(db, { useNewUrlParser: true }) // Adding new mongo url parser
