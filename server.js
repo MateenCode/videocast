@@ -1,18 +1,23 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 const path = require("path");
 
 // Routes Requires
-// const name = require("./routes/api/");
+const users = require("./routes/api/users");
 
 const app = express();
 
-// Bodyparser Middleware
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
+
+// Passport middleware
+app.use(passport.initialize());
 
 // Connect to Mongo
 mongoose
@@ -21,7 +26,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-// app.use("/api/");
+app.use("/api/users", users);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
