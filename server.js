@@ -6,6 +6,7 @@ const path = require("path");
 
 // Routes Requires
 const users = require("./routes/api/users");
+const subscriptions = require("./routes/api/subsriptions");
 
 const app = express();
 
@@ -30,6 +31,7 @@ mongoose
 
 // Use Routes
 app.use("/api/users", users);
+app.use("/api/subscription", subscriptions);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
